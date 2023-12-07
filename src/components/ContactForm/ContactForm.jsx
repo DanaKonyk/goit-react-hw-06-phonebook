@@ -1,39 +1,28 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import css from './ContactForm.module.css';
+import { addContact } from '../../redux/contactsSlice';
+import { nanoid } from 'nanoid';
 
-const ContactForm = ({ onSubmit }) => {
-  const [formValues, setFormValues] = useState({
-    name: '',
-    number: '',
-  });
-
-  const reset = () => {
-    setFormValues({ name: '', number: '' });
-  };
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormValues(prev => ({ ...prev, [name]: value }));
-  };
+const ContactForm = () => {
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(formValues);
-    reset();
+
+    const newContact = {
+      id: nanoid(),
+      name: e.target.elements.name.value,
+      number: e.target.elements.number.value,
+    };
+    dispatch(addContact(newContact));
+    e.target.reset();
   };
 
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <label className={css.label}>
         Name
-        <input
-          className={css.input}
-          type="text"
-          name="name"
-          onChange={handleChange}
-          value={formValues.name}
-          required
-        />
+        <input className={css.input} type="text" name="name" required />
       </label>
 
       <label className={css.label}>
@@ -42,8 +31,6 @@ const ContactForm = ({ onSubmit }) => {
           className={css.input}
           type="tel"
           name="number"
-          onChange={handleChange}
-          value={formValues.number}
           pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
           required
         />
