@@ -31,6 +31,7 @@ const ContactForm = () => {
           className={css.input}
           type="tel"
           name="number"
+          placeholder="000-00-00"
           pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
           required
         />
