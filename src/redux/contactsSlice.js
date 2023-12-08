@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-const contactsInitialState = {
-  users: [],
-};
+import {initialState} from './initialState'
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: contactsInitialState,
+  initialState: initialState.contacts,
   reducers: {
     addContact(state, action) {
       state.users = [...state.users, action.payload];
