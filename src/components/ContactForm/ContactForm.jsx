@@ -13,9 +13,11 @@ const ContactForm = () => {
 
     const newContactName = e.target.elements.name.value;
 
-    const isContactExist = contacts.some(
-      contact => contact.name.toLowerCase() === newContactName.toLowerCase()
-    );
+    const isContactExist =
+      contacts &&
+      contacts.some(
+        contact => contact.name.toLowerCase() === newContactName.toLowerCase()
+      );
 
     if (isContactExist) {
       alert('Contact with this name already exist!');
