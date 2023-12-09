@@ -3,17 +3,17 @@ import {initialState} from './initialState'
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: initialState.contacts,
+  initialState, 
   reducers: {
     addContact(state, action) {
-      state.users = [...state.users, action.payload];
+      state.contacts = [...state.contacts, action.payload];
     },
-
     deleteContact(state, action) {
-      state.users = state.users.filter(el => el.id !== action.payload);
+      state.contacts = state.contacts.filter(el => el.id !== action.payload);
     },
   },
 });
+
 
 export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
