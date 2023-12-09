@@ -11,7 +11,7 @@ export const App = () => {
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      {listOfContacts.length > 0 ? (
+      {listOfContacts && listOfContacts.length > 0 ? (
         <>
           <h2>Contacts</h2>
           <Filter />
